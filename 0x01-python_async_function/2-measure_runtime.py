@@ -1,4 +1,8 @@
 #!/usr/bin/env python3
+"""
+This module measures the total execution time and returns
+the total time to n.
+"""
 
 import asyncio
 import time
