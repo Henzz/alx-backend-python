@@ -6,10 +6,11 @@ delay between 0 and max_delay seconds and returns the delay.
 
 import asyncio
 import random
-from typing import Optional, Union
+#from typing import Optional, Union
 
 
-async def wait_random(max_delay: Optional[Union[int, float]] = 10) -> float:
+#async def wait_random(max_delay: Optional[Union[int, float]] = 10) -> float:
+async def wait_random(max_delay = 10):
     """
         Waits for a random delay between 0 and max_delay
         seconds and returns the delay.
