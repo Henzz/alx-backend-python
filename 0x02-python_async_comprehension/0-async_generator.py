@@ -13,7 +13,7 @@ async def async_generator() -> float:
     Loops 10 times asycnhronously waiting 1 second between
     then yields a random number 0-10.
 
-    Return:
+    Yields:
         random number between 0 and 10
     """
     for _ in range(10):
