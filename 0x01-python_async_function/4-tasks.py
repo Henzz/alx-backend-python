@@ -4,10 +4,12 @@ This module calls task_wait_random.
 """
 
 import asyncio
+from typing import List
+
 task_wait_random = __import__('3-tasks').task_wait_random
 
 
-async def task_wait_n(n: int, max_delay: int) -> list[float]:
+async def task_wait_n(n: int, max_delay: int) -> List[float]:
     """
     Creates n tasks with task_wait_random(max_delay) and waits
     for them all to complete.
@@ -19,6 +21,14 @@ async def task_wait_n(n: int, max_delay: int) -> list[float]:
     Returns:
         list[float]: The list of delays (in seconds) for each completed task.
     """
-    tasks = [task_wait_random(max_delay) for _ in range(n)]
-    delays = await asyncio.gather(*tasks)
-    return sorted(delays)
+    delays = []
+    tasks = []
+
+    for _ in range(n):
+        tasks.append(task_wait_random(max_delay))
+
+    for task in asyncio.as_completed(tasks):
+        delay = await task
+        delays.append(delay)
+
+    return delays
